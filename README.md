@@ -135,22 +135,13 @@ Common error responses include:
 - `400 Bad Request`: User with email already exists
 - `500 Internal Server Error`: Server-side errors
 
-## Testing
-
-To run tests:
-
-```bash
-npm run test
-# or
-yarn test
-```
 
 ## Documentation
 
 API documentation is available via Swagger UI when the application is running:
 
 ```
-http://localhost:3000/api
+http://localhost:3000/api/v1/docs
 ```
 
 ## Project Structure
@@ -179,12 +170,6 @@ Key dependencies:
 - `@nestjs/swagger`: API documentation
 - `bcrypt`: Password hashing
 - `prisma`: Database ORM
-- `jsonwebtoken`: JWT generation and verification
+- `jwt`: JWT generation and verification
+- `@nestjs/microservice`: NestJS Microservice 
 
-## Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request.
-
-## License
-
-[MIT](LICENSE)
