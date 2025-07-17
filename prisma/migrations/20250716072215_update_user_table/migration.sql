@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "users" ADD COLUMN     "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN     "isActive" BOOLEAN DEFAULT true,
+ADD COLUMN     "isAdmin" BOOLEAN DEFAULT false,
+ADD COLUMN     "lastLogin" TIMESTAMP(3),
+ADD COLUMN     "updatedAt" TIMESTAMP(3);

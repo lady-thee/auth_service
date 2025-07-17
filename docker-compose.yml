@@ -1,0 +1,81 @@
+# version: '3.8'
+
+# networks:
+#   my_network:
+#     driver: bridge
+
+# services:  
+#   auth-service:
+#     build:
+#       context: .
+#       target: production  # Use the production stage from multi-stage Dockerfile
+#     image: order-auth-app:latest
+#     container_name: order-auth-app 
+#     working_dir: /app
+#     expose:
+#       - "3001"
+#     ports:
+#       - "3001:3000"
+#     environment:
+#       NODE_ENV: production
+#       DB_HOST: db
+#       DB_PORT: ${POSTGRES_PORT}
+#       DB_USER: ${POSTGRES_USER}
+#       DB_PASSWORD: ${POSTGRES_PASSWORD}
+#       DB_NAME: ${POSTGRES_DB}
+#       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+#       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+#       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=auth
+#       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+#     depends_on:
+#       db:
+#         condition: service_healthy
+#     healthcheck:
+#       test: ["CMD", "node", "dist/healthcheck.js"]
+#       interval: 30s
+#       timeout: 10s
+#       retries: 3
+#       start_period: 10s
+#     restart: unless-stopped
+#     networks:
+#       - my_network
+  
+#   db:
+#     image: postgres:17-alpine 
+#     container_name: order-db-container
+#     environment:
+#       POSTGRES_USER: ${POSTGRES_USER}
+#       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+#       POSTGRES_DB: ${POSTGRES_DB}
+#       POSTGRES_INITDB_ARGS: --encoding=UTF-8
+#       POSTGRES_HOST_AUTH_METHOD: trust  # Only for development
+#     healthcheck:
+#       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+#       interval: 10s
+#       timeout: 5s
+#       retries: 5
+#     ports:
+#       - "5433:5432" 
+#     volumes:
+#       - auth_postgres_data:/var/lib/postgresql/data
+#       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql  # Optional DB initialization
+#     networks:
+#       - my_network
+#     restart: unless-stopped
+  
+#   pgadmin:
+#     image: dpage/pgadmin4:latest
+#     container_name: pgadmin_container
+#     environment:
+#       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+#       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+#     ports:
+#       - "5050:80"
+#     depends_on:
+#       - db
+#     networks:
+#       - my_network
+#     restart: unless-stopped
+
+# volumes:
+#   auth_postgres_data:
