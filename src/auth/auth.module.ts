@@ -10,8 +10,8 @@ import { JWTUtilService } from 'src/utils/jwt.utils';
 
 @Module({
   controllers: [AuthController],
-  providers: [AuthService, JWTUtilService],
-  imports: [ConfigModule, JwtModule, PrismaModule],
+  providers: [AuthService],
+  imports: [ConfigModule, JwtModule, PrismaModule, JWTUtilService],
   exports: [AuthService],
 })
 export class AuthModule {}
