@@ -1,14 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Injectable, Logger } from '@nestjs/common';
-import { CreateUserDto } from './dto/register.dto';
+// import { CreateUserDto } from './dto/register.dto';
 import { get_response, StatusCode } from 'src/utils/response.helpers';
 import { ServerHTTPResponse } from 'src/utils/interfaces/respose.interface';
 import { PasswordUtils } from 'src/utils/password.utils';
 import { JWTUtilService } from 'src/utils/jwt.utils';
-import { LoginUserDto } from './dto/login.dto';
+// import { LoginUserDto } from './dto/login.dto';
 import { Prisma } from 'generated/prisma';
 import { addHours } from 'date-fns';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateUserDto, LoginUserDto } from '@lady-thee/common-contracts';
 
 const logger = new Logger('AuthService');
 
