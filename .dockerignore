@@ -35,3 +35,9 @@ yarn-error.log
 # OS-generated files
 .DS_Store
 Thumbs.db
+
+# Ignore Docker and VSCode files
+.dockerignore
+Dockerfile
+docker-compose.yml
+.vscode

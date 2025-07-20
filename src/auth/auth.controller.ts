@@ -1,10 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { Controller, Logger } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateUserDto } from './dto/register.dto';
 import { ClientHTTPResponse } from 'src/utils/interfaces/respose.interface';
-import { LoginUserDto } from './dto/login.dto';
 import { MessagePattern, Payload } from '@nestjs/microservices';
+import { CreateUserDto, LoginUserDto } from '@lady-thee/common-contracts';
 
 const logger = new Logger('AuthService');
 
