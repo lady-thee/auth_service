@@ -2,7 +2,7 @@
 import { Controller, Logger } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ClientHTTPResponse } from 'src/utils/interfaces/respose.interface';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import {  MessagePattern, Payload } from '@nestjs/microservices';
 import { CreateUserDto, LoginUserDto } from '@lady-thee/common-contracts';
 
 const logger = new Logger('AuthService');

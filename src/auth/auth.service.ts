@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 // import { CreateUserDto } from './dto/register.dto';
 import { get_response, StatusCode } from 'src/utils/response.helpers';
 import { ServerHTTPResponse } from 'src/utils/interfaces/respose.interface';
@@ -11,6 +11,7 @@ import { Prisma } from 'generated/prisma';
 import { addHours } from 'date-fns';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto, LoginUserDto } from '@lady-thee/common-contracts';
+import { ClientProxy } from '@nestjs/microservices';
 
 const logger = new Logger('AuthService');
 
@@ -19,6 +20,8 @@ export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwt: JWTUtilService,
+    @Inject('NOTIFCATION_SERVICE')
+    private readonly notificationServiceClient: ClientProxy,
   ) {}
 
   async createUserService(
@@ -75,6 +78,12 @@ export class AuthService {
         );
       });
 
+      // Send welcome email notification
+      logger.log('Sending welcome email...');
+      this.notificationServiceClient.emit('user_created', {
+        email: createUserDto.email,
+        name: createUserDto.username || 'User',
+      });
       return response;
     } catch (error) {
       logger.error(`Error creating user: ${error}`, error);
